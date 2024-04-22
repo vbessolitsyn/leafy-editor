@@ -1,1 +1,3 @@
-# leafy-editor
+# Leafy Editor
+
+An editor for creating connected topics
