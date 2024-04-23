@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DocumentService } from '../../services/document.service';
 import { IDocument } from '../../interfaces/idocument';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-editor-toolbar',
   standalone: true,
   imports: [],
+  providers: [DatePipe],
   templateUrl: './editor-toolbar.component.html',
   styleUrl: './editor-toolbar.component.scss'
 })
@@ -15,6 +17,7 @@ export class EditorToolbarComponent {
   public $FileLoaded: Subject<IDocument> = new Subject();
 
   constructor(
+    private datePipe: DatePipe,
     public docSrv: DocumentService
   ) {
     this.docSrv.SubscribeForFileOpened(this.$FileLoaded);
@@ -46,11 +49,11 @@ export class EditorToolbarComponent {
 
   public SaveFile(): void {
     const link = document.createElement("a");
-    const content = JSON.stringify(this.docSrv.Document ?? '');
+    const content = JSON.stringify(this.docSrv.Document() ?? '');
     console.log('saving', content);
     const file = new Blob([content], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
-    link.download = "data.json";
+    link.download = `data-${this.datePipe.transform(Date(), 'yyMMdd-HHmm')}.json`;
     link.click();
     URL.revokeObjectURL(link.href);
   }
