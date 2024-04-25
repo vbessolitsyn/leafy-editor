@@ -48,13 +48,8 @@ export class EditorToolbarComponent {
   }
 
   public SaveFile(): void {
-    const link = document.createElement("a");
     const content = JSON.stringify(this.docSrv.Document() ?? '');
-    console.log('saving', content);
-    const file = new Blob([content], { type: 'text/plain' });
-    link.href = URL.createObjectURL(file);
-    link.download = `data-${this.datePipe.transform(Date(), 'yyMMdd-HHmm')}.json`;
-    link.click();
-    URL.revokeObjectURL(link.href);
+    navigator.clipboard.writeText(content)
+      .then(_ => console.log());
   }
 }
