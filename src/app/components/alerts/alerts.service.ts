@@ -5,27 +5,23 @@ import { Alert } from './alert';
   providedIn: 'root'
 })
 export class AlertsService {
-  private alerts: Array<TrackedAlert> = [];
+  public Alerts: Array<TrackedAlert> = [];
 
   constructor() { }
 
   public AddAlert(alert: Alert) {
     const tAlert = new TrackedAlert(alert);
-    this.alerts.push(tAlert);
-    console.log(`Added ${tAlert.Id}, total:${this.alerts.length}`);
+    this.Alerts.push(tAlert);
+    console.log(`Added ${tAlert.Id}, total:${this.Alerts.length}`);
     const timer = setTimeout(
       () => {
-        const id = this.alerts.findIndex(a => a.Id === tAlert.Id)
+        const id = this.Alerts.findIndex(a => a.Id === tAlert.Id)
         if (id >= 0) {
-          this.alerts.splice(id, 1);
-          console.log(`Removed ${tAlert.Id}, total:${this.alerts.length}`);
+          this.Alerts.splice(id, 1);
+          console.log(`Removed ${tAlert.Id}, total:${this.Alerts.length}`);
         }
       },
-      3000)
-  }
-
-  public Alerts(): ReadonlyArray<TrackedAlert> {
-    return this.alerts;
+      5000)
   }
 }
 

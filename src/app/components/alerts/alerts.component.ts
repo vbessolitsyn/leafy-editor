@@ -13,14 +13,10 @@ import { NgFor } from '@angular/common';
 })
 export class AlertsComponent {
   constructor(
-    private alertsSrv: AlertsService
-  ) {
-    this.Alerts = this.alertsSrv.Alerts().map(a => a.alert);
-  }
+    public alertsSrv: AlertsService
+  ) { }
 
   ItemId(index: number, item: any) {
     return item.Id; 
   }
-
-  public Alerts: Array<Alert>;
 }
