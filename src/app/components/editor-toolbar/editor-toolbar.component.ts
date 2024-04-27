@@ -3,6 +3,8 @@ import { Subject } from 'rxjs';
 import { DocumentService } from '../../services/document.service';
 import { IDocument } from '../../interfaces/idocument';
 import { DatePipe } from '@angular/common';
+import { AlertsService } from '../alerts/alerts.service';
+import { Alert, ALertTypes } from '../alerts/alert';
 
 @Component({
   selector: 'app-editor-toolbar',
@@ -18,7 +20,8 @@ export class EditorToolbarComponent {
 
   constructor(
     private datePipe: DatePipe,
-    public docSrv: DocumentService
+    public docSrv: DocumentService,
+    public alertSrv: AlertsService
   ) {
     this.docSrv.SubscribeForFileOpened(this.$FileLoaded);
   }
@@ -51,5 +54,9 @@ export class EditorToolbarComponent {
     const content = JSON.stringify(this.docSrv.Document() ?? '');
     navigator.clipboard.writeText(content)
       .then(_ => console.log());
+  }
+
+  public AddAlert() {
+    this.alertSrv.AddAlert(new Alert(ALertTypes.Info, 'Test alert'));
   }
 }
