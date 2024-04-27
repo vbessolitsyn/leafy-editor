@@ -50,7 +50,7 @@ export class EditorToolbarComponent {
     input.click();
   }
 
-  public SaveFile(): void {
+  public Save(): void {
     const content = JSON.stringify(this.docSrv.Document() ?? '');
     navigator.clipboard.writeText(content)
       .then(_ => this.alertSrv.AddAlert(new Alert(ALertTypes.Info, 'Document\`s contents copied to clipboard')));
