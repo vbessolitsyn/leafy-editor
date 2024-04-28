@@ -1,0 +1,6 @@
+<div class="alerts">
+    <div *ngFor="let alert of alertsSrv.Alerts; trackBy: ItemId"
+        class="alert alert-primary" role="alert">
+        {{alert.alert.Message}}
+    </div>
+</div>
