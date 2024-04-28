@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
+
+$main-bg-color: #273746;
+$accent-bg-color: #34495E;
+
+$main-color: #F7F9F9;
+
+html {
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    background-color: $main-bg-color;
+    color: $main-color;
+    padding: 2em;
+}
+
+button, input {
+    padding: .5em 1em;
+    background-color: $main-bg-color;
+    font-size: 16px;
+    color: $main-color;
+    border: none;
+
+    &:hover {
+        background-color: $accent-bg-color;
+    }
+}
