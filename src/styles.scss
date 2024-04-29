@@ -8,13 +8,19 @@ $accent-bg-color: #34495E;
 $main-color: #F7F9F9;
 
 html {
+    height: 100%;
+    width: 100%;
     font-family: "M PLUS 1p", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;
     background-color: $main-bg-color;
     color: $main-color;
-    padding: 2em;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
 }
 
 button, input {
@@ -27,4 +33,8 @@ button, input {
     &:hover {
         background-color: $accent-bg-color;
     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 1em 0 .5em 0;
 }
